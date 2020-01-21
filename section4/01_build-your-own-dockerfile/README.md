@@ -1,17 +1,11 @@
-FROM node:10.18.1-alpine3.11
 
-RUN apk add --update tini
-RUN mkdir -p /usr/src/app
-COPY package.json /usr/src/app
-RUN npm install
-RUN npm cache clean --force
-COPY . /usr/src/app
+  
 
-WORKDIR /usr/src/app
-# CMD /sbin/tini -- node ./bin/www
+# Assignment: Build Your Own Dockerfile and Run Containers from It
 
-EXPOSE 80
+Instructions in the Dockerfile in the repo: [https://github.com/BretFisher/udemy-docker-mastery/tree/master/dockerfile-assignment-1](https://github.com/BretFisher/udemy-docker-mastery/tree/master/dockerfile-assignment-1)
 
+```
 # use this empty Dockerfile to build your assignment
 
 # This dir contains a Node.js app, you need to get it running in a container
@@ -26,12 +20,11 @@ EXPOSE 80
 # then remove local image from cache
 # then start a new container from your Hub image, and watch how it auto downloads and runs
 # test again that it works at http://localhost
-
-
+  
 # Instructions from the app developer
 # - you should use the 'node' official image, with the alpine 6.x branch
 # - this app listens on port 3000, but the container should launch on port 80
-  #  so it will respond to http://localhost:80 on your computer
+# so it will respond to http://localhost:80 on your computer
 # - then it should use alpine package manager to install tini: 'apk add --update tini'
 # - then it should create directory /usr/src/app for app files with 'mkdir -p /usr/src/app'
 # - Node uses a "package manager", so it needs to copy in package.json file
@@ -44,8 +37,34 @@ EXPOSE 80
 # Bonus Extra Credit
 # this will not have you setting up a complete image useful for local development, test, and prod
 # it's just meant to get you started with basic Dockerfile concepts and not focus too much on
-# proper Node.js use in a container. **If you happen to be a Node.js Developer**, then 
-# after you get through more of this course, you should come back and use my 
-# Node Docker Good Defaults sample project on GitHub to change this Dockerfile for 
+# proper Node.js use in a container. **If you happen to be a Node.js Developer**, then
+# after you get through more of this course, you should come back and use my
+# Node Docker Good Defaults sample project on GitHub to change this Dockerfile for
 # better local development with more advanced topics
 # https://github.com/BretFisher/node-docker-good-defaults
+```
+  
+  
+
+## Answer
+
+* Copy the Dockerfile to the repo and run
+
+  
+
+```
+
+docker build -t my_image ,
+
+```
+
+  
+  
+
+Then run it
+
+```
+
+docker run --rm -p 80:3000 my_image
+
+```
